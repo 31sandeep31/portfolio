@@ -8,16 +8,22 @@ import { Providers } from "./providers";
 import { siteConfig } from "@/config/site";
 import { fontSans } from "@/config/fonts";
 import { Navbar } from "@/components/navbar";
+import {
+  MailIcon,
+  LinkedinIcon,
+  FacebookIcon,
+  InstagramIcon,
+  XIcon,
+  WhatsAppIcon,
+  GithubIcon,
+} from "@/components/icons";
 
 export const metadata: Metadata = {
   title: {
-    default: siteConfig.name,
-    template: `%s - ${siteConfig.name}`,
+    default: `${siteConfig.name} · Civil and Rural Engineer`,
+    template: `%s · ${siteConfig.name}`,
   },
   description: siteConfig.description,
-  icons: {
-    icon: "/favicon.ico",
-  },
 };
 
 export const viewport: Viewport = {
@@ -42,21 +48,92 @@ export default function RootLayout({
         )}
       >
         <Providers themeProps={{ attribute: "class", defaultTheme: "dark" }}>
-          <div className="relative flex flex-col h-screen">
+          <div className="relative flex flex-col min-h-screen">
             <Navbar />
-            <main className="container mx-auto max-w-7xl pt-16 px-6 flex-grow">
+            <main className="container mx-auto max-w-7xl pt-6 px-6 flex-grow">
               {children}
             </main>
-            <footer className="w-full flex items-center justify-center py-3">
-              <Link
-                isExternal
-                className="flex items-center gap-1 text-current"
-                href="https://heroui.com?utm_source=next-app-template"
-                title="heroui.com homepage"
-              >
-                <span className="text-default-600">Powered by</span>
-                <p className="text-primary">HeroUI</p>
-              </Link>
+            <footer className="w-full border-t border-default-200 mt-12">
+              <div className="container mx-auto max-w-7xl px-6 py-8 flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-default-500">
+                <p>
+                  © {new Date().getFullYear()} {siteConfig.name}. Built
+                  with Next.js and HeroUI.
+                </p>
+                <div className="flex items-center gap-4">
+                  <Link
+                    isExternal
+                    aria-label="Email"
+                    className="text-default-500 hover:text-primary"
+                    href={siteConfig.links.email}
+                    title="Email"
+                  >
+                    <MailIcon size={18} />
+                  </Link>
+                  <Link
+                    isExternal
+                    aria-label="LinkedIn"
+                    className="text-default-500 hover:text-primary"
+                    href={siteConfig.links.linkedin}
+                    title="LinkedIn"
+                  >
+                    <LinkedinIcon size={18} />
+                  </Link>
+                  <Link
+                    isExternal
+                    aria-label="Facebook"
+                    className="text-default-500 hover:text-primary"
+                    href={siteConfig.links.facebook}
+                    title="Facebook"
+                  >
+                    <FacebookIcon size={18} />
+                  </Link>
+                  <Link
+                    isExternal
+                    aria-label="Instagram"
+                    className="text-default-500 hover:text-primary"
+                    href={siteConfig.links.instagram}
+                    title="Instagram"
+                  >
+                    <InstagramIcon size={18} />
+                  </Link>
+                  <Link
+                    isExternal
+                    aria-label="X"
+                    className="text-default-500 hover:text-primary"
+                    href={siteConfig.links.x}
+                    title="X"
+                  >
+                    <XIcon size={18} />
+                  </Link>
+                  <Link
+                    isExternal
+                    aria-label="WhatsApp"
+                    className="text-default-500 hover:text-primary"
+                    href={siteConfig.links.whatsapp}
+                    title="WhatsApp"
+                  >
+                    <WhatsAppIcon size={18} />
+                  </Link>
+                  <Link
+                    isExternal
+                    aria-label="GitHub"
+                    className="text-default-500 hover:text-primary"
+                    href={siteConfig.links.github}
+                    title="GitHub"
+                  >
+                    <GithubIcon size={18} />
+                  </Link>
+                </div>
+                <Link
+                  isExternal
+                  className="text-default-500 hover:text-primary"
+                  href={siteConfig.links.mansangkot}
+                  size="sm"
+                  title="Mansangkot"
+                >
+                  Mansangkot ↗
+                </Link>
+              </div>
             </footer>
           </div>
         </Providers>
