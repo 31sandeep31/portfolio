@@ -12,7 +12,12 @@ import {
 import { Button } from "@heroui/button";
 import { Link } from "@heroui/link";
 import { Popover, PopoverTrigger, PopoverContent } from "@heroui/popover";
-import { link as linkStyles } from "@heroui/theme";
+import {
+  Dropdown,
+  DropdownTrigger,
+  DropdownMenu,
+  DropdownItem,
+} from "@heroui/dropdown";
 import NextLink from "next/link";
 import clsx from "clsx";
 import { usePathname } from "next/navigation";
@@ -44,21 +49,47 @@ const moreSocials: SocialLink[] = [
   { label: "GitHub", href: siteConfig.links.github, Icon: GithubIcon },
 ];
 
+const ChevronDown = ({ className }: { className?: string }) => (
+  <svg
+    className={className}
+    fill="none"
+    height="16"
+    stroke="currentColor"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    strokeWidth="2"
+    viewBox="0 0 24 24"
+    width="16"
+  >
+    <path d="M6 9l6 6 6-6" />
+  </svg>
+);
+
 export const Navbar = () => {
   const pathname = usePathname();
+  const isToolActive = siteConfig.tools.some(
+    (t) => !t.external && pathname?.startsWith(t.href),
+  );
 
   return (
-    <HeroUINavbar maxWidth="xl" position="sticky">
+    <HeroUINavbar
+      classNames={{
+        base: "bg-background/95 backdrop-blur-xl border-b border-default-200 shadow-sm",
+        wrapper: "px-4 md:px-6",
+      }}
+      maxWidth="xl"
+      position="sticky"
+    >
       <NavbarContent className="basis-1/5 sm:basis-full" justify="start">
         <NavbarBrand as="li" className="gap-3 max-w-fit">
-          <NextLink className="flex justify-start items-center gap-2" href="/">
-            <span className="inline-flex h-8 w-8 items-center justify-center rounded-full bg-primary text-primary-foreground font-bold">
-              SK
-            </span>
-            <p className="font-bold text-inherit">Sandeep Kafle</p>
+          <NextLink className="flex justify-start items-center" href="/">
+            <p className="font-bold text-base sm:text-lg tracking-tight">
+              Sandeep Kafle
+            </p>
           </NextLink>
         </NavbarBrand>
-        <ul className="hidden lg:flex gap-4 justify-start ml-2">
+
+        <ul className="hidden md:flex gap-1 justify-start ml-6">
           {siteConfig.navItems.map((item) => {
             const isActive =
               item.href === "/"
@@ -69,10 +100,11 @@ export const Navbar = () => {
               <NavbarItem key={item.href} isActive={isActive}>
                 <NextLink
                   className={clsx(
-                    linkStyles({ color: "foreground" }),
-                    "data-[active=true]:text-primary data-[active=true]:font-medium",
+                    "relative px-3 py-2 rounded-lg text-sm font-medium transition-colors",
+                    isActive
+                      ? "text-primary bg-primary/10"
+                      : "text-default-700 hover:text-foreground hover:bg-default-100",
                   )}
-                  data-active={isActive}
                   href={item.href}
                 >
                   {item.label}
@@ -80,6 +112,54 @@ export const Navbar = () => {
               </NavbarItem>
             );
           })}
+
+          <NavbarItem isActive={isToolActive}>
+            <Dropdown placement="bottom-start">
+              <DropdownTrigger>
+                <button
+                  className={clsx(
+                    "relative inline-flex items-center gap-1 px-3 py-2 rounded-lg text-sm font-medium transition-colors",
+                    isToolActive
+                      ? "text-primary bg-primary/10"
+                      : "text-default-700 hover:text-foreground hover:bg-default-100",
+                  )}
+                  type="button"
+                >
+                  Tools
+                  <ChevronDown />
+                </button>
+              </DropdownTrigger>
+              <DropdownMenu
+                aria-label="Tools"
+                itemClasses={{
+                  base: "gap-2 data-[hover=true]:bg-default-100",
+                }}
+              >
+                {siteConfig.tools.map((tool) => (
+                  <DropdownItem
+                    key={tool.label}
+                    as={tool.external ? Link : NextLink}
+                    description={tool.description}
+                    endContent={
+                      tool.external ? (
+                        <span className="text-default-400 text-xs">↗</span>
+                      ) : null
+                    }
+                    href={tool.href}
+                    {...(tool.external
+                      ? {
+                          isExternal: true,
+                          target: "_blank",
+                          rel: "noopener noreferrer",
+                        }
+                      : {})}
+                  >
+                    {tool.label}
+                  </DropdownItem>
+                ))}
+              </DropdownMenu>
+            </Dropdown>
+          </NavbarItem>
         </ul>
       </NavbarContent>
 
@@ -146,6 +226,7 @@ export const Navbar = () => {
 
           <ThemeSwitch />
         </NavbarItem>
+
         <NavbarItem className="hidden md:flex">
           <Button
             as={Link}

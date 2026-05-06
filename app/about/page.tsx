@@ -95,10 +95,10 @@ export default function AboutPage() {
         <div className="md:col-span-2 flex flex-col gap-4">
           <h1 className={title()}>About me</h1>
           <p className={subtitle({ class: "mt-0" })}>
-            I&apos;m a Civil and Rural Engineer from Waling, Syangja. I have
-            practical experience in community projects and volunteer with
-            Engineers Without Borders Nepal. I work well independently and
-            stay deadline oriented.
+            I&apos;m a Civil Engineer from Waling, Syangja. I have practical
+            experience in community projects and volunteer with Engineers
+            Without Borders Nepal. I work well independently and stay
+            deadline oriented.
           </p>
 
           <div className="flex flex-wrap gap-2">
