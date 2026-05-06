@@ -13,7 +13,7 @@ import { AnimatePresence, motion } from "framer-motion";
 
 import type { GalleryCategory } from "./galleryData";
 
-const AUTO_INTERVAL_MS = 4500;
+const AUTO_INTERVAL_MS = 3000;
 
 export default function GalleryCarousel({
   category,
@@ -49,15 +49,20 @@ export default function GalleryCarousel({
   }, [paused, isOpen, total]);
 
   useEffect(() => {
-    const el = thumbsRef.current?.querySelector<HTMLElement>(
+    const container = thumbsRef.current;
+    const target = container?.querySelector<HTMLElement>(
       `[data-thumb-index="${active}"]`,
     );
 
-    el?.scrollIntoView({
-      behavior: "smooth",
-      block: "nearest",
-      inline: "center",
-    });
+    if (!container || !target) return;
+
+    // Scroll only the thumbnail strip horizontally, never the page.
+    const targetCenter = target.offsetLeft + target.offsetWidth / 2;
+    const desired = targetCenter - container.clientWidth / 2;
+    const max = container.scrollWidth - container.clientWidth;
+    const clamped = Math.max(0, Math.min(desired, max));
+
+    container.scrollTo({ left: clamped, behavior: "smooth" });
   }, [active]);
 
   if (total === 0) return null;

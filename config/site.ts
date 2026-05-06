@@ -8,13 +8,30 @@ export const siteConfig = {
     { label: "Home", href: "/" },
     { label: "About", href: "/about" },
     { label: "Gallery", href: "/gallery" },
-    { label: "Date Converter", href: "/dateconverter" },
+  ],
+  tools: [
+    {
+      label: "Date Converter",
+      href: "/dateconverter",
+      description: "Convert between Bikram Sambat and Gregorian dates.",
+      external: false,
+    },
+    {
+      label: "Valuation Report Generator",
+      href: "https://valuation.sandeepkafle.com.np/",
+      description: "Generate property valuation reports.",
+      external: true,
+    },
   ],
   navMenuItems: [
     { label: "Home", href: "/" },
     { label: "About", href: "/about" },
     { label: "Gallery", href: "/gallery" },
     { label: "Date Converter", href: "/dateconverter" },
+    {
+      label: "Valuation Report Generator",
+      href: "https://valuation.sandeepkafle.com.np/",
+    },
     { label: "Download CV", href: "/cv/Sandeep_Kafle_CV.pdf" },
   ],
   links: {
