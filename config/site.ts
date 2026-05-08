@@ -22,6 +22,12 @@ export const siteConfig = {
       description: "Generate property valuation reports.",
       external: true,
     },
+    {
+      label: "Water Supply M&E (KPI)",
+      href: "https://kpi.sandeepkafle.com.np/",
+      description: "Monitoring and evaluation for water supply projects.",
+      external: true,
+    },
   ],
   navMenuItems: [
     { label: "Home", href: "/" },
@@ -31,6 +37,10 @@ export const siteConfig = {
     {
       label: "Valuation Report Generator",
       href: "https://valuation.sandeepkafle.com.np/",
+    },
+    {
+      label: "Water Supply M&E (KPI)",
+      href: "https://kpi.sandeepkafle.com.np/",
     },
     { label: "Download CV", href: "/cv/Sandeep_Kafle_CV.pdf" },
   ],
