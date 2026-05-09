@@ -28,6 +28,12 @@ export const siteConfig = {
       description: "Monitoring and evaluation for water supply projects.",
       external: true,
     },
+    {
+      label: "Kundali",
+      href: "https://astro.sandeepkafle.com.np/",
+      description: "Vedic astrology birth chart generator.",
+      external: true,
+    },
   ],
   navMenuItems: [
     { label: "Home", href: "/" },
@@ -42,12 +48,16 @@ export const siteConfig = {
       label: "Water Supply M&E (KPI)",
       href: "https://kpi.sandeepkafle.com.np/",
     },
+    {
+      label: "Kundali",
+      href: "https://astro.sandeepkafle.com.np/",
+    },
     { label: "Download CV", href: "/cv/Sandeep_Kafle_CV.pdf" },
   ],
   links: {
     email: "mailto:sandeepkafle31@gmail.com",
     linkedin: "https://www.linkedin.com/in/31sandeep31",
-    github: "https://github.com/sandeepkafle31",
+    github: "https://github.com/31sandeep31",
     facebook: "https://www.facebook.com/31sandeep31/",
     instagram: "https://www.instagram.com/31sandeep31/",
     x: "https://x.com/31sandeep31",
