@@ -34,6 +34,12 @@ export const siteConfig = {
       description: "Vedic astrology birth chart generator.",
       external: true,
     },
+    {
+      label: "Engineering Calculator",
+      href: "https://calculator.sandeepkafle.com.np/",
+      description: "Quick calculations for everyday engineering tasks.",
+      external: true,
+    },
   ],
   navMenuItems: [
     { label: "Home", href: "/" },
@@ -51,6 +57,10 @@ export const siteConfig = {
     {
       label: "Kundali",
       href: "https://astro.sandeepkafle.com.np/",
+    },
+    {
+      label: "Engineering Calculator",
+      href: "https://calculator.sandeepkafle.com.np/",
     },
     { label: "Download CV", href: "/cv/Sandeep_Kafle_CV.pdf" },
   ],
