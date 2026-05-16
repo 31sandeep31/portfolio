@@ -18,6 +18,7 @@ import {
   DropdownMenu,
   DropdownItem,
 } from "@heroui/dropdown";
+import { Tooltip } from "@heroui/tooltip";
 import NextLink from "next/link";
 import clsx from "clsx";
 import { usePathname } from "next/navigation";
@@ -28,12 +29,28 @@ import {
   GithubIcon,
   LinkedinIcon,
   MailIcon,
-  DownloadIcon,
   FacebookIcon,
   InstagramIcon,
   XIcon,
   WhatsAppIcon,
 } from "@/components/icons";
+
+const LockIcon = ({ className }: { className?: string }) => (
+  <svg
+    className={className}
+    fill="none"
+    height="18"
+    stroke="currentColor"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    strokeWidth="2"
+    viewBox="0 0 24 24"
+    width="18"
+  >
+    <rect x="3" y="11" width="18" height="11" rx="2" />
+    <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+  </svg>
+);
 
 type SocialLink = {
   label: string;
@@ -160,6 +177,19 @@ export const Navbar = () => {
               </DropdownMenu>
             </Dropdown>
           </NavbarItem>
+
+          <NavbarItem>
+            <Tooltip content={siteConfig.maps.title} placement="bottom">
+              <Link
+                isExternal
+                aria-label={siteConfig.maps.title}
+                className="relative inline-flex items-center px-3 py-2 rounded-lg text-sm font-medium text-default-700 hover:text-foreground hover:bg-default-100 transition-colors"
+                href={siteConfig.maps.href}
+              >
+                {siteConfig.maps.label}
+              </Link>
+            </Tooltip>
+          </NavbarItem>
         </ul>
       </NavbarContent>
 
@@ -229,14 +259,14 @@ export const Navbar = () => {
 
         <NavbarItem className="hidden md:flex">
           <Button
-            as={Link}
+            as={NextLink}
             className="text-sm font-medium"
             color="primary"
             href={siteConfig.links.cv}
-            startContent={<DownloadIcon size={18} />}
+            startContent={<LockIcon />}
             variant="flat"
           >
-            Download CV
+            Request CV
           </Button>
         </NavbarItem>
       </NavbarContent>
@@ -244,13 +274,13 @@ export const Navbar = () => {
       <NavbarContent className="md:hidden basis-1 pl-4" justify="end">
         <Button
           isIconOnly
-          as={Link}
-          aria-label="Download CV"
+          as={NextLink}
+          aria-label="Request CV access"
           color="primary"
           href={siteConfig.links.cv}
           variant="flat"
         >
-          <DownloadIcon size={18} />
+          <LockIcon />
         </Button>
         <ThemeSwitch />
         <NavbarMenuToggle />
