@@ -26,10 +26,11 @@ export const metadata: Metadata = {
   description: siteConfig.description,
   icons: {
     icon: [
-      { url: "/CIMG1439.JPG", type: "image/jpeg" },
+      { url: "/favicon-32.png", type: "image/png", sizes: "32x32" },
+      { url: "/favicon-64.png", type: "image/png", sizes: "64x64" },
     ],
-    apple: [{ url: "/CIMG1439.JPG", type: "image/jpeg" }],
-    shortcut: ["/CIMG1439.JPG"],
+    apple: [{ url: "/apple-touch-icon.png", sizes: "180x180" }],
+    shortcut: ["/favicon-32.png"],
   },
 };
 
