@@ -1,4 +1,5 @@
 import Image from "next/image";
+import NextLink from "next/link";
 import { Link } from "@heroui/link";
 import { Chip } from "@heroui/chip";
 import { Card, CardBody, CardHeader } from "@heroui/card";
@@ -7,7 +8,7 @@ import { button as buttonStyles } from "@heroui/theme";
 
 import { siteConfig } from "@/config/site";
 import { title, subtitle } from "@/components/primitives";
-import { DownloadIcon, MailIcon, LinkedinIcon } from "@/components/icons";
+import { MailIcon, LinkedinIcon } from "@/components/icons";
 
 export const metadata = {
   title: "About",
@@ -76,6 +77,60 @@ const skills = [
   "Canva",
 ];
 
+const LockIcon = ({ className }: { className?: string }) => (
+  <svg
+    className={className}
+    fill="none"
+    height="20"
+    stroke="currentColor"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    strokeWidth="2"
+    viewBox="0 0 24 24"
+    width="20"
+  >
+    <rect x="3" y="11" width="18" height="11" rx="2" />
+    <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+  </svg>
+);
+
+const GatedSection = ({ children }: { children: React.ReactNode }) => (
+  <div className="relative">
+    <div
+      aria-hidden
+      className="pointer-events-none select-none blur-md opacity-60"
+    >
+      {children}
+    </div>
+    <div className="absolute inset-0 flex items-center justify-center p-6">
+      <div className="flex flex-col items-center gap-3 text-center px-6 py-5 rounded-2xl bg-background/85 backdrop-blur-md ring-1 ring-default-200 shadow-lg max-w-sm">
+        <div className="h-10 w-10 rounded-full bg-primary/15 text-primary flex items-center justify-center">
+          <LockIcon />
+        </div>
+        <p className="text-sm font-semibold tracking-wide uppercase text-default-600">
+          Private CV content
+        </p>
+        <p className="text-default-600 text-sm">
+          Education, experience, projects and skills are part of my CV. Request
+          access to view the full details.
+        </p>
+        <Link
+          className={buttonStyles({
+            color: "primary",
+            radius: "full",
+            variant: "shadow",
+            size: "sm",
+          })}
+          href={siteConfig.links.cv}
+        >
+          <LockIcon className="opacity-90" />
+          Request CV access
+        </Link>
+      </div>
+    </div>
+  </div>
+);
+
 export default function AboutPage() {
   return (
     <section className="flex flex-col gap-10 py-8 md:py-10">
@@ -111,6 +166,7 @@ export default function AboutPage() {
 
           <div className="flex flex-wrap gap-2 mt-2">
             <Link
+              as={NextLink}
               className={buttonStyles({
                 color: "primary",
                 radius: "full",
@@ -118,8 +174,8 @@ export default function AboutPage() {
               })}
               href={siteConfig.links.cv}
             >
-              <DownloadIcon size={18} />
-              Download CV
+              <LockIcon />
+              Request CV access
             </Link>
             <Link
               isExternal
@@ -149,95 +205,99 @@ export default function AboutPage() {
 
       <Divider />
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <Card>
-          <CardHeader>
-            <h2 className="text-xl font-semibold">Education</h2>
-          </CardHeader>
-          <CardBody className="gap-4">
-            {education.map((e) => (
-              <div key={e.title}>
-                <p className="font-medium">{e.title}</p>
-                <p className="text-default-600 text-sm">
-                  {e.org}
-                  {e.year ? `, ${e.year}` : ""}
-                </p>
-              </div>
-            ))}
-          </CardBody>
-        </Card>
+      <GatedSection>
+        <div className="flex flex-col gap-10">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <Card>
+              <CardHeader>
+                <h2 className="text-xl font-semibold">Education</h2>
+              </CardHeader>
+              <CardBody className="gap-4">
+                {education.map((e) => (
+                  <div key={e.title}>
+                    <p className="font-medium">{e.title}</p>
+                    <p className="text-default-600 text-sm">
+                      {e.org}
+                      {e.year ? `, ${e.year}` : ""}
+                    </p>
+                  </div>
+                ))}
+              </CardBody>
+            </Card>
 
-        <Card>
-          <CardHeader>
-            <h2 className="text-xl font-semibold">Experience</h2>
-          </CardHeader>
-          <CardBody className="gap-4">
-            {experience.map((x) => (
-              <div key={x.org}>
-                <p className="font-medium">{x.role}</p>
-                <p className="text-default-600 text-sm">{x.org}</p>
-                <p className="text-default-500 text-xs mt-0.5">
-                  {x.period}
-                </p>
-                <ul className="list-disc pl-5 mt-2 text-sm text-default-700 space-y-1">
-                  {x.points.map((p) => (
-                    <li key={p}>{p}</li>
+            <Card>
+              <CardHeader>
+                <h2 className="text-xl font-semibold">Experience</h2>
+              </CardHeader>
+              <CardBody className="gap-4">
+                {experience.map((x) => (
+                  <div key={x.org}>
+                    <p className="font-medium">{x.role}</p>
+                    <p className="text-default-600 text-sm">{x.org}</p>
+                    <p className="text-default-500 text-xs mt-0.5">
+                      {x.period}
+                    </p>
+                    <ul className="list-disc pl-5 mt-2 text-sm text-default-700 space-y-1">
+                      {x.points.map((p) => (
+                        <li key={p}>{p}</li>
+                      ))}
+                    </ul>
+                  </div>
+                ))}
+              </CardBody>
+            </Card>
+          </div>
+
+          <Card>
+            <CardHeader>
+              <h2 className="text-xl font-semibold">Undergraduate projects</h2>
+            </CardHeader>
+            <CardBody className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              {projects.map((p) => (
+                <div
+                  key={p.title}
+                  className="rounded-xl border border-default-200 p-4"
+                >
+                  <p className="font-medium">{p.title}</p>
+                  <p className="text-default-600 text-sm mt-1">
+                    {p.description}
+                  </p>
+                </div>
+              ))}
+            </CardBody>
+          </Card>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <Card>
+              <CardHeader>
+                <h2 className="text-xl font-semibold">
+                  Volunteering and affiliations
+                </h2>
+              </CardHeader>
+              <CardBody>
+                <ul className="list-disc pl-5 text-sm text-default-700 space-y-2">
+                  {volunteering.map((v) => (
+                    <li key={v}>{v}</li>
                   ))}
                 </ul>
-              </div>
-            ))}
-          </CardBody>
-        </Card>
-      </div>
+              </CardBody>
+            </Card>
 
-      <Card>
-        <CardHeader>
-          <h2 className="text-xl font-semibold">Undergraduate projects</h2>
-        </CardHeader>
-        <CardBody className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          {projects.map((p) => (
-            <div
-              key={p.title}
-              className="rounded-xl border border-default-200 p-4"
-            >
-              <p className="font-medium">{p.title}</p>
-              <p className="text-default-600 text-sm mt-1">
-                {p.description}
-              </p>
-            </div>
-          ))}
-        </CardBody>
-      </Card>
-
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <Card>
-          <CardHeader>
-            <h2 className="text-xl font-semibold">
-              Volunteering and affiliations
-            </h2>
-          </CardHeader>
-          <CardBody>
-            <ul className="list-disc pl-5 text-sm text-default-700 space-y-2">
-              {volunteering.map((v) => (
-                <li key={v}>{v}</li>
-              ))}
-            </ul>
-          </CardBody>
-        </Card>
-
-        <Card>
-          <CardHeader>
-            <h2 className="text-xl font-semibold">Skills</h2>
-          </CardHeader>
-          <CardBody className="flex flex-row flex-wrap gap-2">
-            {skills.map((s) => (
-              <Chip key={s} variant="flat">
-                {s}
-              </Chip>
-            ))}
-          </CardBody>
-        </Card>
-      </div>
+            <Card>
+              <CardHeader>
+                <h2 className="text-xl font-semibold">Skills</h2>
+              </CardHeader>
+              <CardBody className="flex flex-row flex-wrap gap-2">
+                {skills.map((s) => (
+                  <Chip key={s} variant="flat">
+                    {s}
+                  </Chip>
+                ))}
+              </CardBody>
+            </Card>
+          </div>
+        </div>
+      </GatedSection>
     </section>
   );
 }

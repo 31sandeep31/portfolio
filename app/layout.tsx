@@ -24,6 +24,13 @@ export const metadata: Metadata = {
     template: `%s · ${siteConfig.name}`,
   },
   description: siteConfig.description,
+  icons: {
+    icon: [
+      { url: "/CIMG1439.JPG", type: "image/jpeg" },
+    ],
+    apple: [{ url: "/CIMG1439.JPG", type: "image/jpeg" }],
+    shortcut: ["/CIMG1439.JPG"],
+  },
 };
 
 export const viewport: Viewport = {
