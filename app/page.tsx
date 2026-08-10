@@ -3,6 +3,9 @@ import { Link } from "@heroui/link";
 import { Card, CardBody } from "@heroui/card";
 import { button as buttonStyles } from "@heroui/theme";
 
+import { getGalleries } from "./gallery/galleryData";
+import SnapshotsPreview from "./SnapshotsPreview";
+
 import { siteConfig } from "@/config/site";
 import { RotatingText } from "@/components/rotating-text";
 import {
@@ -27,13 +30,10 @@ const LockIcon = ({ className }: { className?: string }) => (
     viewBox="0 0 24 24"
     width="18"
   >
-    <rect x="3" y="11" width="18" height="11" rx="2" />
+    <rect height="11" rx="2" width="18" x="3" y="11" />
     <path d="M7 11V7a5 5 0 0 1 10 0v4" />
   </svg>
 );
-import { getGalleries } from "./gallery/galleryData";
-
-import SnapshotsPreview from "./SnapshotsPreview";
 
 const stats = [
   { value: "97322", label: "NEC Reg. No." },
@@ -65,6 +65,21 @@ const socials = [
   { label: "X", href: siteConfig.links.x, Icon: XIcon },
   { label: "WhatsApp", href: siteConfig.links.whatsapp, Icon: WhatsAppIcon },
   { label: "GitHub", href: siteConfig.links.github, Icon: GithubIcon },
+];
+
+const projectItems = [
+  ...siteConfig.tools.map((tool) => ({
+    label: tool.label,
+    href: tool.href,
+    description: tool.description,
+    external: tool.external,
+  })),
+  {
+    label: siteConfig.maps.label,
+    href: siteConfig.maps.href,
+    description: siteConfig.maps.title,
+    external: true,
+  },
 ];
 
 export default function Home() {
@@ -242,6 +257,55 @@ export default function Home() {
         </div>
       </div>
 
+      {/* TOOLS & PROJECTS */}
+      <div className="flex flex-col gap-6">
+        <div>
+          <p className="text-primary text-sm font-semibold uppercase tracking-widest">
+            Things I build
+          </p>
+          <h2 className="text-3xl md:text-4xl font-semibold tracking-tight mt-2">
+            Tools &amp; projects
+          </h2>
+          <p className="text-default-600 mt-2 max-w-2xl">
+            Products and utilities I design, build, and maintain, live at
+            sandeepkafle.com.np.
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          {projectItems.map((item) => (
+            <Card
+              key={item.label}
+              className="bg-default-50/60 hover:-translate-y-1 transition-transform duration-300"
+            >
+              <CardBody className="gap-3 p-6">
+                <div className="flex items-center justify-between">
+                  <div className="h-10 w-10 rounded-xl bg-primary/15 text-primary flex items-center justify-center font-semibold">
+                    {item.label.charAt(0)}
+                  </div>
+                  {item.external ? (
+                    <span className="text-default-400 text-xs">↗</span>
+                  ) : null}
+                </div>
+                <div>
+                  <h3 className="font-semibold text-lg">{item.label}</h3>
+                  <p className="text-default-600 text-sm leading-relaxed mt-1">
+                    {item.description}
+                  </p>
+                </div>
+                <Link
+                  className="text-sm font-medium text-primary hover:underline w-fit"
+                  href={item.href}
+                  {...(item.external ? { isExternal: true } : {})}
+                >
+                  Open project
+                </Link>
+              </CardBody>
+            </Card>
+          ))}
+        </div>
+      </div>
+
       {/* GALLERY PREVIEW */}
       {allImages.length > 0 ? (
         <div className="flex flex-col gap-6">
@@ -274,8 +338,8 @@ export default function Home() {
               Have a project in mind?
             </h2>
             <p className="text-default-600 mt-2 max-w-xl">
-              Open to freelance work, community engineering collaborations,
-              and student mentorship.
+              Open to freelance work, community engineering collaborations, and
+              student mentorship.
             </p>
           </div>
           <div className="flex flex-wrap gap-3">

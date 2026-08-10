@@ -24,9 +24,7 @@ function pickRandom(images: string[], count: number): string[] {
 
 export default function SnapshotsPreview({ images }: { images: string[] }) {
   // Deterministic on server + first client render so hydration matches.
-  const [picked, setPicked] = useState<string[]>(() =>
-    images.slice(0, COUNT),
-  );
+  const [picked, setPicked] = useState<string[]>(() => images.slice(0, COUNT));
 
   // After mount, shuffle for a fresh selection on every page load.
   useEffect(() => {

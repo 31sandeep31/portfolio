@@ -59,8 +59,8 @@ export default function RootLayout({
         )}
       >
         <a
-          href="#main-content"
           className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[100] focus:px-4 focus:py-2 focus:rounded-lg focus:bg-primary focus:text-white focus:shadow-lg"
+          href="#main-content"
         >
           Skip to content
         </a>
@@ -76,8 +76,8 @@ export default function RootLayout({
             <footer className="w-full border-t border-default-200 mt-12">
               <div className="container mx-auto max-w-7xl px-4 sm:px-6 py-8 flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-default-500 text-center md:text-left">
                 <p>
-                  © {new Date().getFullYear()} {siteConfig.name}. Built
-                  with Next.js and HeroUI.
+                  © {new Date().getFullYear()} {siteConfig.name}. Built with
+                  Next.js and HeroUI.
                 </p>
                 <div className="flex items-center gap-4">
                   <Link

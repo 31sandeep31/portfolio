@@ -1,7 +1,7 @@
-import { title, subtitle } from "@/components/primitives";
-
 import GalleryCarousel from "./GalleryCarousel";
 import { getGalleries } from "./galleryData";
+
+import { title, subtitle } from "@/components/primitives";
 
 export const metadata = {
   title: "Gallery",
@@ -17,9 +17,9 @@ export default function GalleryPage() {
       <div>
         <h1 className={title()}>Gallery</h1>
         <p className={subtitle({ class: "mt-2 max-w-2xl" })}>
-          A collection of moments from field work, EWB Nepal projects,
-          survey camp, and graduation. Each section auto plays. Hover to
-          pause and click any photo to view it full size.
+          A collection of moments from field work, EWB Nepal projects, survey
+          camp, and graduation. Each section auto plays. Hover to pause and
+          click any photo to view it full size.
         </p>
       </div>
 

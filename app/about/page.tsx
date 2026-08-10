@@ -70,8 +70,7 @@ const projects = [
       "Undergraduate research on LULC change patterns in the Pokhara metropolitan area using GIS techniques.",
   },
   {
-    title:
-      "Study of Landslide Mitigation Strategy for Safe Road Construction",
+    title: "Study of Landslide Mitigation Strategy for Safe Road Construction",
     description:
       "Mid-Hill Highway case study in the Madi Corridor focusing on landslide mitigation for safe road construction.",
   },
@@ -109,7 +108,7 @@ const LockIcon = ({ className }: { className?: string }) => (
     viewBox="0 0 24 24"
     width="20"
   >
-    <rect x="3" y="11" width="18" height="11" rx="2" />
+    <rect height="11" rx="2" width="18" x="3" y="11" />
     <path d="M7 11V7a5 5 0 0 1 10 0v4" />
   </svg>
 );
@@ -172,8 +171,8 @@ export default function AboutPage() {
           <p className={subtitle({ class: "mt-0" })}>
             I&apos;m a Civil Engineer from Waling, Syangja. I have practical
             experience in community projects and volunteer with Engineers
-            Without Borders Nepal. I work well independently and stay
-            deadline oriented.
+            Without Borders Nepal. I work well independently and stay deadline
+            oriented.
           </p>
 
           <div className="flex flex-wrap gap-2">

@@ -31,6 +31,7 @@ export default function DateConverterPage() {
   const handleConvert = () => {
     if (!adDate && !bsDate) {
       setError("Please provide at least one date to convert.");
+
       return;
     }
 
@@ -39,13 +40,17 @@ export default function DateConverterPage() {
     if (adDate) {
       try {
         const jsDate = new Date(adDate);
+
         if (Number.isNaN(jsDate.getTime())) throw new Error("Invalid AD date");
         const nd = new NepaliDate(jsDate);
         const bs = nd.getBS();
+
         setConvertedBs(`${bs.year}-${pad(bs.month + 1)}-${pad(bs.date)}`);
       } catch {
         setConvertedBs("");
-        setError("Unable to convert the English (AD) date. Please check the value.");
+        setError(
+          "Unable to convert the English (AD) date. Please check the value.",
+        );
       }
     }
 
@@ -53,11 +58,16 @@ export default function DateConverterPage() {
       try {
         const nd = new NepaliDate(bsDate);
         const jsDate = nd.toJsDate();
+
         if (Number.isNaN(jsDate.getTime())) throw new Error("Invalid BS date");
         setConvertedAd(toIsoDate(jsDate));
       } catch {
         setConvertedAd("");
-        setError((prev) => prev || "Unable to convert the Nepali (BS) date. Please check the value.");
+        setError(
+          (prev) =>
+            prev ||
+            "Unable to convert the Nepali (BS) date. Please check the value.",
+        );
       }
     }
   };
@@ -84,7 +94,8 @@ export default function DateConverterPage() {
             onChange={(event) => handleAdDateChange(event.target.value)}
           />
           <p className="text-sm text-default-500">
-            Nepali (BS): <span className="font-medium">{convertedBs || "—"}</span>
+            Nepali (BS):{" "}
+            <span className="font-medium">{convertedBs || "—"}</span>
           </p>
         </div>
 
@@ -103,25 +114,25 @@ export default function DateConverterPage() {
             onChange={(event) => handleBsDateChange(event.target.value)}
           />
           <p className="text-sm text-default-500">
-            English (AD): <span className="font-medium">{convertedAd || "—"}</span>
+            English (AD):{" "}
+            <span className="font-medium">{convertedAd || "—"}</span>
           </p>
         </div>
       </div>
 
-      {error ? (
-        <p className="mt-6 text-sm text-danger">{error}</p>
-      ) : null}
+      {error ? <p className="mt-6 text-sm text-danger">{error}</p> : null}
 
       <div className="mt-8 flex flex-wrap gap-3">
         <button
           className="inline-flex items-center justify-center rounded-full bg-primary px-5 py-2 text-sm font-semibold text-white transition-transform hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 active:scale-[0.98]"
-          onClick={handleConvert}
           type="button"
+          onClick={handleConvert}
         >
           Convert
         </button>
         <button
           className="inline-flex items-center justify-center rounded-full border border-default-200 bg-transparent px-5 py-2 text-sm font-semibold text-default-700 transition-transform hover:bg-default-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 active:scale-[0.98]"
+          type="button"
           onClick={() => {
             setAdDate(toIsoDate(new Date()));
             setBsDate("");
@@ -129,7 +140,6 @@ export default function DateConverterPage() {
             setConvertedAd("");
             setError(null);
           }}
-          type="button"
         >
           Reset
         </button>
