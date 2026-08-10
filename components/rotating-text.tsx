@@ -12,16 +12,29 @@ type Props = {
 
 export function RotatingText({ words, intervalMs = 2600, className }: Props) {
   const [index, setIndex] = useState(0);
+  const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
 
   useEffect(() => {
-    if (words.length < 2) return;
+    const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
+
+    setPrefersReducedMotion(mq.matches);
+    const handleChange = (e: MediaQueryListEvent) =>
+      setPrefersReducedMotion(e.matches);
+
+    mq.addEventListener("change", handleChange);
+
+    return () => mq.removeEventListener("change", handleChange);
+  }, []);
+
+  useEffect(() => {
+    if (words.length < 2 || prefersReducedMotion) return;
 
     const id = setInterval(() => {
       setIndex((i) => (i + 1) % words.length);
     }, intervalMs);
 
     return () => clearInterval(id);
-  }, [words.length, intervalMs]);
+  }, [words.length, intervalMs, prefersReducedMotion]);
 
   const current = words[index];
   // Longest word reserves the layout slot so the container does not jump
