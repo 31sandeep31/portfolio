@@ -1,17 +1,12 @@
 "use client";
 
+import type { GalleryCategory } from "./galleryData";
+
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { Button } from "@heroui/button";
-import {
-  Modal,
-  ModalContent,
-  ModalBody,
-  useDisclosure,
-} from "@heroui/modal";
+import { Modal, ModalContent, ModalBody, useDisclosure } from "@heroui/modal";
 import { AnimatePresence, motion } from "framer-motion";
-
-import type { GalleryCategory } from "./galleryData";
 
 const AUTO_INTERVAL_MS = 3000;
 
@@ -33,7 +28,8 @@ export default function GalleryCarousel({
     const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
 
     setPrefersReducedMotion(mq.matches);
-    const handleChange = (e: MediaQueryListEvent) => setPrefersReducedMotion(e.matches);
+    const handleChange = (e: MediaQueryListEvent) =>
+      setPrefersReducedMotion(e.matches);
 
     mq.addEventListener("change", handleChange);
 

@@ -47,7 +47,7 @@ const LockIcon = ({ className }: { className?: string }) => (
     viewBox="0 0 24 24"
     width="18"
   >
-    <rect x="3" y="11" width="18" height="11" rx="2" />
+    <rect height="11" rx="2" width="18" x="3" y="11" />
     <path d="M7 11V7a5 5 0 0 1 10 0v4" />
   </svg>
 );
@@ -274,8 +274,8 @@ export const Navbar = () => {
       <NavbarContent className="md:hidden basis-1 pl-4" justify="end">
         <Button
           isIconOnly
-          as={NextLink}
           aria-label="Request CV access"
+          as={NextLink}
           color="primary"
           href={siteConfig.links.cv}
           variant="flat"
@@ -330,11 +330,7 @@ export const Navbar = () => {
             >
               <WhatsAppIcon className="text-default-500" />
             </Link>
-            <Link
-              isExternal
-              aria-label="GitHub"
-              href={siteConfig.links.github}
-            >
+            <Link isExternal aria-label="GitHub" href={siteConfig.links.github}>
               <GithubIcon className="text-default-500" />
             </Link>
           </div>

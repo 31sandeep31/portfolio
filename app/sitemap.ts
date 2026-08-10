@@ -3,7 +3,8 @@ import type { MetadataRoute } from "next";
 export const dynamic = "force-static";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const base = process.env.NEXT_PUBLIC_SITE_URL ?? "https://sandeepkafle.com.np";
+  const base =
+    process.env.NEXT_PUBLIC_SITE_URL ?? "https://sandeepkafle.com.np";
   const now = new Date();
 
   const routes: { path: string; priority: number }[] = [
