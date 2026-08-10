@@ -20,19 +20,31 @@ const education = [
   {
     title: "Bachelor of Civil and Rural Engineering",
     org: "School of Engineering, Pokhara University",
-    year: "2025",
+    year: "2021 to 2025",
   },
   {
     title: "Higher Secondary (10+2)",
     org: "Tilottama Secondary School, Tilottama",
+    year: "2020",
   },
   {
     title: "Secondary (SEE)",
     org: "Kalika Secondary School, Butwal",
+    year: "2018",
   },
 ];
 
 const experience = [
+  {
+    role: "Growth Lead",
+    org: "Briha Tech Private Limited",
+    period: "Dec 2025 to Aug 2026",
+    points: [
+      "Stepped in as a versatile contributor during the company's early growth phase, helping stabilize research, finance, and marketing operations.",
+      "Delivered core research supporting product development of bamsawali.com and its mobile application, from concept through the first working prototype.",
+      "Provided consulting support on digital marketing initiatives.",
+    ],
+  },
   {
     role: "President",
     org: "Engineers Without Borders Nepal, Pokhara University Chapter",
@@ -57,11 +69,18 @@ const projects = [
     description:
       "Undergraduate research on LULC change patterns in the Pokhara metropolitan area using GIS techniques.",
   },
+  {
+    title:
+      "Study of Landslide Mitigation Strategy for Safe Road Construction",
+    description:
+      "Mid-Hill Highway case study in the Madi Corridor focusing on landslide mitigation for safe road construction.",
+  },
 ];
 
 const volunteering = [
-  "Students Accelerator Program, Darchula (2024 and 2025). iLAB and iJATRA, Design Thinking Workshop.",
-  "Karyashala Workshop (2024 and 2025).",
+  "iLAB and iJATRA 2082, Shree Malikarjun Secondary School, Darchula (2024 to 2025). Students Accelerator Program, Design Thinking Workshop.",
+  "STEAM Educator (part-time), Karyashala Nepal. Delivering hands-on STEAM and design-thinking sessions for secondary students.",
+  "Volunteer, EWB UC Berkeley x Nepal Project (REIC). School sanitation infrastructure at Roshi Secondary School, Kavrepalanchowk (Phase I, June 2026).",
   "Engineers Without Borders Nepal, since 2024.",
 ];
 
@@ -70,11 +89,12 @@ const skills = [
   "SketchUp",
   "SAP2000",
   "ArcGIS Pro",
+  "3D Printing",
+  "Web Development",
   "Post disaster assessment",
   "Structural analysis",
   "MS Office",
   "DaVinci Resolve",
-  "Canva",
 ];
 
 const LockIcon = ({ className }: { className?: string }) => (
