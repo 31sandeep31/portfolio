@@ -19,6 +19,9 @@ import {
 } from "@/components/icons";
 
 export const metadata: Metadata = {
+  metadataBase: new URL(
+    process.env.NEXT_PUBLIC_SITE_URL ?? "https://sandeepkafle.com.np",
+  ),
   title: {
     default: `${siteConfig.name} · Civil and Rural Engineer`,
     template: `%s · ${siteConfig.name}`,
@@ -55,10 +58,19 @@ export default function RootLayout({
           fontSans.variable,
         )}
       >
+        <a
+          href="#main-content"
+          className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[100] focus:px-4 focus:py-2 focus:rounded-lg focus:bg-primary focus:text-white focus:shadow-lg"
+        >
+          Skip to content
+        </a>
         <Providers themeProps={{ attribute: "class", defaultTheme: "dark" }}>
           <div className="relative flex flex-col min-h-screen">
             <Navbar />
-            <main className="container mx-auto max-w-7xl pt-4 sm:pt-6 px-4 sm:px-6 flex-grow">
+            <main
+              className="container mx-auto max-w-7xl pt-4 sm:pt-6 px-4 sm:px-6 flex-grow scroll-mt-20"
+              id="main-content"
+            >
               {children}
             </main>
             <footer className="w-full border-t border-default-200 mt-12">

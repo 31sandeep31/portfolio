@@ -40,6 +40,7 @@ export default function SnapshotsPreview({ images }: { images: string[] }) {
       {picked.map((src, i) => (
         <Link
           key={`${src}-${i}`}
+          aria-label="View photo in the gallery"
           className={`relative aspect-square rounded-2xl overflow-hidden ring-1 ring-default-200 hover:ring-primary transition group ${
             i === 0 ? "md:col-span-2 md:row-span-2 md:aspect-auto" : ""
           }`}

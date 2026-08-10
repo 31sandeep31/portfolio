@@ -112,32 +112,32 @@ export default function Home() {
 
             <div className="flex flex-wrap gap-3 mt-2">
               <Link
-                className={buttonStyles({
+                className={`${buttonStyles({
                   color: "primary",
                   radius: "full",
                   variant: "shadow",
                   size: "lg",
-                })}
+                })} active:scale-[0.98]`}
                 href="/about"
               >
                 About me
               </Link>
               <Link
-                className={buttonStyles({
+                className={`${buttonStyles({
                   variant: "bordered",
                   radius: "full",
                   size: "lg",
-                })}
+                })} active:scale-[0.98]`}
                 href="/gallery"
               >
                 View gallery
               </Link>
               <Link
-                className={buttonStyles({
+                className={`${buttonStyles({
                   variant: "flat",
                   radius: "full",
                   size: "lg",
-                })}
+                })} active:scale-[0.98]`}
                 href={siteConfig.links.cv}
               >
                 <LockIcon />
@@ -281,11 +281,11 @@ export default function Home() {
           <div className="flex flex-wrap gap-3">
             <Link
               isExternal
-              className={buttonStyles({
+              className={`${buttonStyles({
                 color: "primary",
                 radius: "full",
                 variant: "shadow",
-              })}
+              })} active:scale-[0.98]`}
               href={siteConfig.links.email}
             >
               <MailIcon size={18} />
@@ -293,10 +293,10 @@ export default function Home() {
             </Link>
             <Link
               isExternal
-              className={buttonStyles({
+              className={`${buttonStyles({
                 variant: "bordered",
                 radius: "full",
-              })}
+              })} active:scale-[0.98]`}
               href={siteConfig.links.whatsapp}
             >
               <WhatsAppIcon size={18} />

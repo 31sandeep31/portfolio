@@ -22,11 +22,23 @@ export default function GalleryCarousel({
 }) {
   const [[active, direction], setState] = useState<[number, number]>([0, 1]);
   const [paused, setPaused] = useState(false);
+  const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
   const total = category.images.length;
   const timer = useRef<ReturnType<typeof setInterval> | null>(null);
   const thumbsRef = useRef<HTMLDivElement | null>(null);
 
   const { isOpen, onOpen, onClose } = useDisclosure();
+
+  useEffect(() => {
+    const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
+
+    setPrefersReducedMotion(mq.matches);
+    const handleChange = (e: MediaQueryListEvent) => setPrefersReducedMotion(e.matches);
+
+    mq.addEventListener("change", handleChange);
+
+    return () => mq.removeEventListener("change", handleChange);
+  }, []);
 
   const goTo = (i: number) => {
     const target = ((i % total) + total) % total;
@@ -37,7 +49,7 @@ export default function GalleryCarousel({
   const prev = () => setState(([i]) => [(i - 1 + total) % total, -1]);
 
   useEffect(() => {
-    if (paused || isOpen || total < 2) return;
+    if (paused || isOpen || total < 2 || prefersReducedMotion) return;
 
     timer.current = setInterval(() => {
       setState(([i]) => [(i + 1) % total, 1]);
@@ -46,7 +58,7 @@ export default function GalleryCarousel({
     return () => {
       if (timer.current) clearInterval(timer.current);
     };
-  }, [paused, isOpen, total]);
+  }, [paused, isOpen, total, prefersReducedMotion]);
 
   useEffect(() => {
     const container = thumbsRef.current;
@@ -170,13 +182,42 @@ export default function GalleryCarousel({
                 <path d="M9 6l6 6-6 6" />
               </svg>
             </Button>
+            <Button
+              isIconOnly
+              aria-label={paused ? "Play slideshow" : "Pause slideshow"}
+              className="absolute right-3 top-3 z-20 bg-black/40 text-white backdrop-blur-md transition-opacity"
+              radius="full"
+              size="sm"
+              variant="flat"
+              onPress={() => setPaused((p) => !p)}
+            >
+              {paused ? (
+                <svg
+                  fill="currentColor"
+                  height="14"
+                  viewBox="0 0 24 24"
+                  width="14"
+                >
+                  <path d="M8 5v14l11-7z" />
+                </svg>
+              ) : (
+                <svg
+                  fill="currentColor"
+                  height="14"
+                  viewBox="0 0 24 24"
+                  width="14"
+                >
+                  <path d="M6 5h4v14H6zM14 5h4v14h-4z" />
+                </svg>
+              )}
+            </Button>
 
             <div className="absolute bottom-3 left-1/2 -translate-x-1/2 z-20 flex gap-1.5 px-3 py-1.5 rounded-full bg-black/40 backdrop-blur-md">
               {category.images.map((src, i) => (
                 <button
                   key={`${src}-dot`}
                   aria-label={`Go to photo ${i + 1}`}
-                  className={`h-1.5 rounded-full transition-all duration-300 ${
+                  className={`h-1.5 rounded-full transition-[width,background-color] duration-300 ${
                     i === active
                       ? "bg-white w-6"
                       : "bg-white/50 w-1.5 hover:bg-white/80"

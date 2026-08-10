@@ -71,9 +71,14 @@ export default function DateConverterPage() {
 
       <div className="mt-8 grid gap-6 sm:grid-cols-2">
         <div className="space-y-2">
-          <label className="block text-sm font-medium">English Date (AD)</label>
+          <label className="block text-sm font-medium" htmlFor="ad-date">
+            English Date (AD)
+          </label>
           <input
+            autoComplete="off"
             className="w-full rounded-lg border border-default-200 bg-default-50 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-primary"
+            id="ad-date"
+            name="ad-date"
             type="date"
             value={adDate}
             onChange={(event) => handleAdDateChange(event.target.value)}
@@ -84,10 +89,16 @@ export default function DateConverterPage() {
         </div>
 
         <div className="space-y-2">
-          <label className="block text-sm font-medium">Nepali Date (BS)</label>
+          <label className="block text-sm font-medium" htmlFor="bs-date">
+            Nepali Date (BS)
+          </label>
           <input
+            autoComplete="off"
             className="w-full rounded-lg border border-default-200 bg-default-50 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-primary"
+            id="bs-date"
+            name="bs-date"
             placeholder="2051-05-24"
+            type="text"
             value={bsDate}
             onChange={(event) => handleBsDateChange(event.target.value)}
           />
@@ -103,14 +114,14 @@ export default function DateConverterPage() {
 
       <div className="mt-8 flex flex-wrap gap-3">
         <button
-          className="inline-flex items-center justify-center rounded-full bg-primary px-5 py-2 text-sm font-semibold text-white hover:bg-primary/90"
+          className="inline-flex items-center justify-center rounded-full bg-primary px-5 py-2 text-sm font-semibold text-white transition-transform hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 active:scale-[0.98]"
           onClick={handleConvert}
           type="button"
         >
           Convert
         </button>
         <button
-          className="inline-flex items-center justify-center rounded-full border border-default-200 bg-transparent px-5 py-2 text-sm font-semibold text-default-700 hover:bg-default-100"
+          className="inline-flex items-center justify-center rounded-full border border-default-200 bg-transparent px-5 py-2 text-sm font-semibold text-default-700 transition-transform hover:bg-default-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 active:scale-[0.98]"
           onClick={() => {
             setAdDate(toIsoDate(new Date()));
             setBsDate("");
