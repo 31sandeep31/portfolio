@@ -34,11 +34,11 @@ The gallery is file-driven and self-documenting: read `public/gallery/README.md`
 ## Privacy: the CV is intentionally not public
 
 - The `/cv` route (`app/cv/page.tsx`) deliberately shows a blurred placeholder plus a mailto request form. Do not link, embed, or serve the real CV.
-- Local CV copies live in `private/` (gitignored) and `my information/` (tracked).
+- Local CV copies live in `private/` and `my information/` — both are gitignored. The CV was purged from git history; never re-add it.
 - `scripts/generate-cv.py` writes `public/cv/Sandeep_Kafle_CV.pdf` — anything under `public/` is served publicly, so running it exposes the CV. Do not run it (or commit its output).
 
 ## Repo hygiene
 
-- `my information/` contains personal photos and a CV PDF and IS tracked in git (98 files). Do not add more personal files to the repo, and do not copy these into `public/`.
+- `my information/` holds personal photos and IS tracked in git; its CV PDF is gitignored (see above). Do not add more personal files to the repo, and do not copy these into `public/`.
 - `public/gallery/README.md` is the canonical guide for gallery edits; keep it in sync if you change how the gallery works.
 - Favicons are generated from `public/sign.jpg` via `scripts/make-favicon.mjs` (uses `sharp`); regenerate after changing `sign.jpg`, don't hand-edit the PNGs.
