@@ -8,7 +8,7 @@ import { NextResponse } from "next/server";
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
-const CV_BLOB = "Sandeep_Kafle_CV.pdf";
+const CV_BLOB = "Sandeep Kafle CV.pdf";
 const CV_PATH = path.join(process.cwd(), "private", "Sandeep_Kafle_CV.pdf");
 
 const safeEqual = (a: string, b: string) => {
