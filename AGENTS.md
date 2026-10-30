@@ -34,6 +34,7 @@ The gallery is file-driven and self-documenting: read `public/gallery/README.md`
 ## Privacy: the CV is intentionally not public
 
 - The `/cv` route (`app/cv/page.tsx`) deliberately shows a blurred placeholder plus a mailto request form. Do not link, embed, or serve the real CV.
+- Exception, by owner's request: `/cv` also has an access-key form that POSTs to `app/api/cv/route.ts`, which checks `CV_ACCESS_KEY` (env var, `.env.local` / Vercel only; never hardcode it) and streams `private/Sandeep_Kafle_CV.pdf` from disk. The file is gitignored, so it only works where that file physically exists (local, or a host you copy it to); never move it into `public/`.
 - Local CV copies live in `private/` and `my information/` — both are gitignored. The CV was purged from git history; never re-add it.
 - `scripts/generate-cv.py` writes `public/cv/Sandeep_Kafle_CV.pdf` — anything under `public/` is served publicly, so running it exposes the CV. Do not run it (or commit its output).
 

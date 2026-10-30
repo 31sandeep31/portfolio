@@ -40,6 +40,12 @@ export const siteConfig = {
       description: "Quick calculations for everyday engineering tasks.",
       external: true,
     },
+    {
+      label: "HydroMAP",
+      href: "https://hydro.sandeepkafle.com.np/",
+      description: "Hydrological mapping and analysis tool.",
+      external: true,
+    },
   ],
   maps: {
     label: "Maps",
@@ -66,6 +72,10 @@ export const siteConfig = {
     {
       label: "Engineering Calculator",
       href: "https://calculator.sandeepkafle.com.np/",
+    },
+    {
+      label: "HydroMAP",
+      href: "https://hydro.sandeepkafle.com.np/",
     },
     {
       label: "Maps (Nepal Administrative Map)",

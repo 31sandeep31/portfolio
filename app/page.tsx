@@ -87,7 +87,7 @@ export default function Home() {
   const allImages = galleries.flatMap((g) => g.images);
 
   return (
-    <section className="flex flex-col gap-12 sm:gap-16 md:gap-20 pt-2 pb-12 sm:pb-16 md:pb-24">
+    <section className="flex flex-col gap-8 sm:gap-10 md:gap-12 pt-0 pb-10 sm:pb-12 md:pb-16">
       {/* HERO */}
       <div className="relative">
         <div
@@ -99,15 +99,7 @@ export default function Home() {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-12 gap-6 sm:gap-8 md:gap-10 items-start">
-          <div className="md:col-span-7 flex flex-col gap-4 sm:gap-5">
-            <span className="inline-flex items-center gap-2 text-sm text-default-500 w-fit">
-              <span className="relative flex h-2 w-2">
-                <span className="absolute inline-flex h-full w-full rounded-full bg-success/60 animate-ping" />
-                <span className="relative inline-flex h-2 w-2 rounded-full bg-success" />
-              </span>
-              Available for collaborations
-            </span>
-
+          <div className="md:col-span-7 flex flex-col gap-4 sm:gap-5 md:self-center">
             <div className="flex flex-col gap-2 sm:gap-3">
               <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight leading-[1.05]">
                 Hi, I&apos;m
@@ -196,10 +188,6 @@ export default function Home() {
                     Civil Engineer
                   </p>
                 </div>
-              </div>
-              <div className="absolute -bottom-4 -left-4 hidden md:flex items-center gap-2 px-3 py-2 rounded-full bg-background/80 backdrop-blur-md ring-1 ring-default-200 shadow-lg">
-                <span className="text-xs text-default-500">NEC</span>
-                <span className="font-mono font-semibold text-sm">97322</span>
               </div>
             </div>
           </div>
