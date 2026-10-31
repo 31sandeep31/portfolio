@@ -17,9 +17,8 @@ export default function GalleryPage() {
       <div>
         <h1 className={title()}>Gallery</h1>
         <p className={subtitle({ class: "mt-2 max-w-2xl" })}>
-          A collection of moments from field work, EWB Nepal projects, survey
-          camp, and graduation. Each section auto plays. Hover to pause and
-          click any photo to view it full size.
+          Moments from field work, EWB Nepal projects, survey camp, and
+          graduation.
         </p>
       </div>
 

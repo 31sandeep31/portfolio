@@ -36,26 +36,83 @@ const LockIcon = ({ className }: { className?: string }) => (
 );
 
 const stats = [
-  { value: "97322", label: "NEC Reg. No." },
+  { value: "2026", label: "NEC registered engineer" },
   { value: "2025", label: "B.E. Civil & Rural, PoU" },
-  { value: "2024+", label: "EWB Nepal volunteer" },
+  { value: "2024", label: "Joined EWB Nepal" },
   { value: "Waling", label: "Syangja, Nepal" },
 ];
 
 const capabilities = [
   {
     title: "Field engineering",
-    body: "Post disaster assessments, structural analysis, and survey camps across Kaski, Jajarkot, and Darchula.",
+    body: "Post-disaster assessments, structural analysis and survey camps in the field.",
+    tags: ["Kaski", "Jajarkot", "Darchula"],
   },
   {
     title: "Community projects",
-    body: "Volunteer with the EWB Nepal student chapter on workshops in 3D printing, robotics, and design thinking.",
+    body: "Volunteering with the EWB Nepal student chapter, running hands-on workshops in schools.",
+    tags: ["3D printing", "Robotics", "Design thinking"],
   },
   {
-    title: "Tools I work with",
-    body: "AutoCAD, SketchUp, SAP2000, ArcGIS Pro, and DaVinci Resolve for documenting field work.",
+    title: "Day-to-day software",
+    body: "From structural analysis to mapping and documenting field work.",
+    tags: ["AutoCAD", "SketchUp", "SAP2000", "ArcGIS Pro", "DaVinci Resolve"],
   },
 ];
+
+
+const toolActions: Record<string, string> = {
+  "Date Converter": "Convert a date",
+  "Valuation Report Generator": "Create a report",
+  "Water Supply M&E (KPI)": "Track a project",
+  Kundali: "Generate a chart",
+  "Engineering Calculator": "Run a calculation",
+  HydroMAP: "Explore the map",
+  Maps: "Explore Nepal's map",
+  "Rivers of Nepal": "Explore the rivers",
+};
+
+const wave = (y: number) =>
+  `M2 ${y}c.6.5 1.2 1 2.5 1C7 ${y + 1} 7 ${y - 1} 9.5 ${y - 1}c2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1`;
+
+const toolIcons: Record<string, string[]> = {
+  "Date Converter": [
+    "M5 4h14a2 2 0 0 1 2 2v13a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z",
+    "M16 2v4M8 2v4M3 10h18",
+  ],
+  "Valuation Report Generator": [
+    "M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z",
+    "M14 2v6h6M8 13h8M8 17h5",
+  ],
+  "Water Supply M&E (KPI)": ["M3 3v18h18", "M7 14l4-4 3 3 5-6"],
+  Kundali: [
+    "M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z",
+  ],
+  "Engineering Calculator": [
+    "M6 2h12a2 2 0 0 1 2 2v16a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2z",
+    "M8 6h8M8 10h.01M12 10h.01M16 10h.01M8 14h.01M12 14h.01M16 14h.01M8 18h8",
+  ],
+  HydroMAP: ["M12 2.7s7 7.3 7 12.3a7 7 0 0 1-14 0c0-5 7-12.3 7-12.3z"],
+  Maps: ["M3 6l6-3 6 3 6-3v15l-6 3-6-3-6 3z", "M9 3v15M15 6v15"],
+  "Rivers of Nepal": [wave(6), wave(12), wave(18)],
+};
+
+const ToolIcon = ({ name, className }: { name: string; className?: string }) => (
+  <svg
+    aria-hidden
+    className={className}
+    fill="none"
+    stroke="currentColor"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    strokeWidth="1.5"
+    viewBox="0 0 24 24"
+  >
+    {(toolIcons[name] ?? ["M5 12h14M13 6l6 6-6 6"]).map((d) => (
+      <path key={d} d={d} />
+    ))}
+  </svg>
+);
 
 const socials = [
   { label: "Email", href: siteConfig.links.email, Icon: MailIcon },
@@ -78,6 +135,12 @@ const projectItems = [
     label: siteConfig.maps.label,
     href: siteConfig.maps.href,
     description: siteConfig.maps.title,
+    external: true,
+  },
+  {
+    label: siteConfig.rivers.label,
+    href: siteConfig.rivers.href,
+    description: "Explore the river systems of Nepal.",
     external: true,
   },
 ];
@@ -225,22 +288,25 @@ export default function Home() {
           </h2>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-3 md:divide-x divide-default-200 border-t border-default-200">
           {capabilities.map((c) => (
-            <Card
+            <div
               key={c.title}
-              className="bg-default-50/60 hover:-translate-y-1 transition-transform duration-300"
+              className="flex flex-col gap-4 py-6 md:py-8 md:px-8 first:md:pl-0 last:md:pr-0 border-b md:border-b-0 border-default-200 last:border-b-0"
             >
-              <CardBody className="gap-3 p-6">
-                <div className="h-10 w-10 rounded-xl bg-primary/15 text-primary flex items-center justify-center font-semibold">
-                  {c.title.charAt(0)}
-                </div>
-                <h3 className="font-semibold text-lg">{c.title}</h3>
-                <p className="text-default-600 text-sm leading-relaxed">
-                  {c.body}
-                </p>
-              </CardBody>
-            </Card>
+              <h3 className="font-semibold text-xl">{c.title}</h3>
+              <p className="text-default-600 leading-relaxed">{c.body}</p>
+              <ul className="flex flex-wrap gap-2 mt-auto">
+                {c.tags.map((t) => (
+                  <li
+                    key={t}
+                    className="px-2.5 py-1 rounded-md bg-default-100 text-default-700 text-xs font-medium"
+                  >
+                    {t}
+                  </li>
+                ))}
+              </ul>
+            </div>
           ))}
         </div>
       </div>
@@ -254,44 +320,57 @@ export default function Home() {
           <h2 className="text-3xl md:text-4xl font-semibold tracking-tight mt-2">
             Tools &amp; projects
           </h2>
-          <p className="text-default-600 mt-2 max-w-2xl">
-            Products and utilities I design, build, and maintain, live at
-            sandeepkafle.com.np.
-          </p>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
           {projectItems.map((item) => (
-            <Card
-              key={item.label}
-              className="bg-default-50/60 hover:-translate-y-1 transition-transform duration-300"
-            >
-              <CardBody className="gap-3 p-6">
-                <div className="flex items-center justify-between">
-                  <div className="h-10 w-10 rounded-xl bg-primary/15 text-primary flex items-center justify-center font-semibold">
-                    {item.label.charAt(0)}
-                  </div>
-                  {item.external ? (
-                    <span className="text-default-400 text-xs">↗</span>
-                  ) : null}
-                </div>
-                <div>
-                  <h3 className="font-semibold text-lg">{item.label}</h3>
-                  <p className="text-default-600 text-sm leading-relaxed mt-1">
-                    {item.description}
-                  </p>
-                </div>
-                <Link
-                  className="text-sm font-medium text-primary hover:underline w-fit"
-                  href={item.href}
-                  {...(item.external ? { isExternal: true } : {})}
-                >
-                  Open project
-                </Link>
-              </CardBody>
-            </Card>
+            <li key={item.label} className="[perspective:1000px]">
+              <Link
+                className="group block h-48 w-full outline-none"
+                href={item.href}
+                {...(item.external ? { isExternal: true } : {})}
+              >
+                <span className="relative block h-full w-full transition-transform duration-500 ease-out [transform-style:preserve-3d] group-hover:[transform:rotateY(180deg)] group-focus-visible:[transform:rotateY(180deg)]">
+                  {/* front */}
+                  <span className="absolute inset-0 flex flex-col justify-between overflow-hidden rounded-2xl border border-default-200 bg-default-50 p-6 text-foreground [backface-visibility:hidden]">
+                    <span className="flex items-start justify-between">
+                      <ToolIcon
+                        className="h-9 w-9 text-primary"
+                        name={item.label}
+                      />
+                      <span className="text-default-400 text-sm">↗</span>
+                    </span>
+                    <span className="flex flex-col gap-1">
+                      <span className="font-semibold text-lg leading-snug">
+                        {item.label}
+                      </span>
+                      <span className="text-default-500 text-sm leading-snug">
+                        {item.description}
+                      </span>
+                    </span>
+                  </span>
+                  {/* back */}
+                  <span className="absolute inset-0 flex flex-col justify-between rounded-2xl bg-gradient-to-br from-primary to-secondary p-6 text-white [backface-visibility:hidden] [transform:rotateY(180deg)]">
+                    <span className="text-xs uppercase tracking-widest opacity-80">
+                      Try it now
+                    </span>
+                    <span className="flex items-end justify-between gap-3">
+                      <span className="text-2xl font-semibold leading-tight">
+                        {toolActions[item.label] ?? "Open it"}
+                      </span>
+                      <span
+                        aria-hidden
+                        className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-white/20 text-lg"
+                      >
+                        →
+                      </span>
+                    </span>
+                  </span>
+                </span>
+              </Link>
+            </li>
           ))}
-        </div>
+        </ul>
       </div>
 
       {/* GALLERY PREVIEW */}
@@ -323,11 +402,10 @@ export default function Home() {
         <CardBody className="p-8 md:p-10 flex flex-col md:flex-row md:items-center md:justify-between gap-6">
           <div>
             <h2 className="text-2xl md:text-3xl font-semibold tracking-tight">
-              Have a project in mind?
+              Let&apos;s grab a coffee?
             </h2>
             <p className="text-default-600 mt-2 max-w-xl">
-              Open to freelance work, community engineering collaborations, and
-              student mentorship.
+              Come say hi, meet up for a chat, or just leave me a message.
             </p>
           </div>
           <div className="flex flex-wrap gap-3">

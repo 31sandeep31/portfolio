@@ -190,6 +190,19 @@ export const Navbar = () => {
               </Link>
             </Tooltip>
           </NavbarItem>
+
+          <NavbarItem>
+            <Tooltip content={siteConfig.rivers.title} placement="bottom">
+              <Link
+                isExternal
+                aria-label={siteConfig.rivers.title}
+                className="relative inline-flex items-center px-3 py-2 rounded-lg text-sm font-medium text-default-700 hover:text-foreground hover:bg-default-100 transition-colors"
+                href={siteConfig.rivers.href}
+              >
+                {siteConfig.rivers.label}
+              </Link>
+            </Tooltip>
+          </NavbarItem>
         </ul>
       </NavbarContent>
 

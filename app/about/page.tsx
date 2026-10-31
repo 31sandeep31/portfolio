@@ -171,13 +171,12 @@ export default function AboutPage() {
           <p className={subtitle({ class: "mt-0" })}>
             I&apos;m a Civil Engineer from Waling, Syangja. I have practical
             experience in community projects and volunteer with Engineers
-            Without Borders Nepal. I work well independently and stay deadline
-            oriented.
+            Without Borders Nepal.
           </p>
 
           <div className="flex flex-wrap gap-2">
             <Chip color="primary" variant="flat">
-              NEC Reg. No. 97322
+              NEC Registered Engineer, 2026
             </Chip>
             <Chip variant="flat">Waling, Syangja</Chip>
             <Chip variant="flat">Pokhara University, 2025</Chip>

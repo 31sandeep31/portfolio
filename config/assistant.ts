@@ -12,7 +12,7 @@ export const assistantConfig = {
   suggestions: [
     "Who is Sandeep?",
     "What's his work experience?",
-    "How do I get his CV?",
+    "How can I request his CV?",
     "How can I contact him?",
   ],
   placeholder: "Ask a question…",

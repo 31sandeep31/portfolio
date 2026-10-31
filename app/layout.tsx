@@ -77,8 +77,7 @@ export default function RootLayout({
             <footer className="w-full border-t border-default-200 mt-12">
               <div className="container mx-auto max-w-7xl px-4 sm:px-6 py-8 flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-default-500 text-center md:text-left">
                 <p>
-                  © {new Date().getFullYear()} {siteConfig.name}. Built with
-                  Next.js and HeroUI.
+                  © {new Date().getFullYear()} {siteConfig.name}.
                 </p>
                 <div className="flex items-center gap-4">
                   <Link

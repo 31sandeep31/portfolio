@@ -52,6 +52,11 @@ export const siteConfig = {
     href: "https://maps.sandeepkafle.com.np",
     title: "Nepal Administrative Map",
   },
+  rivers: {
+    label: "Rivers of Nepal",
+    href: "https://rivers.sandeepkafle.com.np",
+    title: "Rivers of Nepal",
+  },
   navMenuItems: [
     { label: "Home", href: "/" },
     { label: "About", href: "/about" },
@@ -80,6 +85,10 @@ export const siteConfig = {
     {
       label: "Maps (Nepal Administrative Map)",
       href: "https://maps.sandeepkafle.com.np",
+    },
+    {
+      label: "Rivers of Nepal",
+      href: "https://rivers.sandeepkafle.com.np",
     },
     { label: "Request CV access", href: "/cv" },
   ],
