@@ -6,6 +6,7 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import { Button } from "@heroui/button";
 import { Spinner } from "@heroui/spinner";
 
+import { trackEvent } from "@/components/analytics";
 import { assistantConfig } from "@/config/assistant";
 
 type Role = "user" | "assistant";
@@ -117,6 +118,7 @@ export const ChatWidget = () => {
       const content = rawText.trim();
 
       if (!content || busy) return;
+      trackEvent("chat_message");
 
       setError(null);
       setInput("");
@@ -236,6 +238,7 @@ export const ChatWidget = () => {
   };
 
   const toggle = () => {
+    if (!isOpen) trackEvent("chat_open");
     setIsOpen((open) => !open);
   };
 

@@ -9,6 +9,7 @@ import { siteConfig } from "@/config/site";
 import { fontSans } from "@/config/fonts";
 import { Navbar } from "@/components/navbar";
 import { ChatWidget } from "@/components/chat-widget";
+import { SiteAnalytics } from "@/components/analytics";
 import {
   MailIcon,
   LinkedinIcon,
@@ -157,6 +158,7 @@ export default function RootLayout({
             </footer>
           </div>
           <ChatWidget />
+          <SiteAnalytics />
         </Providers>
       </body>
     </html>
