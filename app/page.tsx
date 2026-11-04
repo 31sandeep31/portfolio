@@ -35,13 +35,6 @@ const LockIcon = ({ className }: { className?: string }) => (
   </svg>
 );
 
-const stats = [
-  { value: "2026", label: "NEC registered engineer" },
-  { value: "2025", label: "B.E. Civil & Rural, PoU" },
-  { value: "2024", label: "Joined EWB Nepal" },
-  { value: "Waling", label: "Syangja, Nepal" },
-];
-
 const capabilities = [
   {
     title: "Field engineering",
@@ -255,26 +248,6 @@ export default function Home() {
             </div>
           </div>
         </div>
-      </div>
-
-      {/* STATS STRIP */}
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4">
-        {stats.map((s) => (
-          <Card
-            key={s.label}
-            className="bg-default-50/60 hover:bg-default-100 transition-colors"
-            shadow="none"
-          >
-            <CardBody className="gap-1 py-5">
-              <p className="text-2xl md:text-3xl font-bold tracking-tight">
-                {s.value}
-              </p>
-              <p className="text-default-500 text-xs md:text-sm uppercase tracking-wider">
-                {s.label}
-              </p>
-            </CardBody>
-          </Card>
-        ))}
       </div>
 
       {/* CAPABILITIES */}
